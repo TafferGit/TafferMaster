@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TaffTest", "TaffTest\TaffTest.vcxproj", "{AB295A95-CCA2-4A18-A209-3C1723D9BC32}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL_Prototype", "OpenGL_Prototype\OpenGL_Prototype.vcxproj", "{B9467B28-DC89-4507-B1A1-B089C7B7724D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AB295A95-CCA2-4A18-A209-3C1723D9BC32}.Debug|x64.ActiveCfg = Debug|x64
-		{AB295A95-CCA2-4A18-A209-3C1723D9BC32}.Debug|x64.Build.0 = Debug|x64
-		{AB295A95-CCA2-4A18-A209-3C1723D9BC32}.Debug|x86.ActiveCfg = Debug|Win32
-		{AB295A95-CCA2-4A18-A209-3C1723D9BC32}.Debug|x86.Build.0 = Debug|Win32
-		{AB295A95-CCA2-4A18-A209-3C1723D9BC32}.Release|x64.ActiveCfg = Release|x64
-		{AB295A95-CCA2-4A18-A209-3C1723D9BC32}.Release|x64.Build.0 = Release|x64
-		{AB295A95-CCA2-4A18-A209-3C1723D9BC32}.Release|x86.ActiveCfg = Release|Win32
-		{AB295A95-CCA2-4A18-A209-3C1723D9BC32}.Release|x86.Build.0 = Release|Win32
+		{B9467B28-DC89-4507-B1A1-B089C7B7724D}.Debug|x64.ActiveCfg = Debug|x64
+		{B9467B28-DC89-4507-B1A1-B089C7B7724D}.Debug|x64.Build.0 = Debug|x64
+		{B9467B28-DC89-4507-B1A1-B089C7B7724D}.Debug|x86.ActiveCfg = Debug|Win32
+		{B9467B28-DC89-4507-B1A1-B089C7B7724D}.Debug|x86.Build.0 = Debug|Win32
+		{B9467B28-DC89-4507-B1A1-B089C7B7724D}.Release|x64.ActiveCfg = Release|x64
+		{B9467B28-DC89-4507-B1A1-B089C7B7724D}.Release|x64.Build.0 = Release|x64
+		{B9467B28-DC89-4507-B1A1-B089C7B7724D}.Release|x86.ActiveCfg = Release|Win32
+		{B9467B28-DC89-4507-B1A1-B089C7B7724D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
