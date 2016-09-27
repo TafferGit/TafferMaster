@@ -1,7 +1,11 @@
 #pragma once
+#ifndef RENDERED_H_INCLUDED
+#define RENDERED_H_INCLUDED
 #include <cstdlib>
+#include <iostream>
 #include "GL\freeglut.h"
-
+#include "TestMap.h"
+void PrepareForDisplay(void);
 struct QuadVerticles {
 	double upperLeftX;
 	double upperLeftY; 
@@ -23,3 +27,4 @@ private:
 public:
 	Renderer(Map map);
 };
+#endif
