@@ -19,6 +19,7 @@ private:
 	void DisplayFirstFrame(int **tiles);
 	void DrawTile(int tileId, QuadVerticles qv);
 	QuadVerticles CalculateVertexes(int x, int y);
+	Map map;
 public:
-	Renderer();
+	Renderer(Map map);
 };

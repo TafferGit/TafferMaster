@@ -2,6 +2,8 @@
 
 int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
+	Map map = new Map();
+	Renderer renderer = new Renderer(map);
 }
 
 void Renderer::DisplayFirstFrame(int **tiles)
@@ -50,12 +52,12 @@ QuadVerticles Renderer::CalculateVertexes(int x, int y)
 	return qv;
 }
 
-Renderer::Renderer()
+Renderer::Renderer(Map map)
 {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(640, 480);
 	glutCreateWindow("Test Map");
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-	glutDisplayFunc(this->DisplayFirstFrame());
+	glutDisplayFunc(this->DisplayFirstFrame(map.getIconIds()));
 	glutMainLoop();
 }
