@@ -9,15 +9,13 @@ int main(int argc, char * argv[]) {
 	glutPositionWindow(1, 1);
 	glClearColor(1.0, 0.0, 0.0, 1.0);
 
-	//glMatrixMode(GL_PROJECTION);
-	//glOrtho(0.0, 640, 0.0, 480, -100.0, 100.0);
+	glMatrixMode(GL_PROJECTION);
+	gluOrtho2D(0.0, 640.0, 480.0, 0.0);
 
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
 	glutDisplayFunc(PrepareForDisplay);
-
-	gluOrtho2D(0.0, 1.0, 1.0, 0.0);
 
 	glutMainLoop();
 
@@ -37,10 +35,6 @@ void Renderer::DisplayFirstFrame(int **tiles)
 		}
 	}
 	glEnd();
-	/*std::cout << "Clearing color buffer bit";
-	glClear(GL_COLOR_BUFFER_BIT);
-	
-	glRectf(0.0, 0.0, 0.5, 0.5);*/
 	glutSwapBuffers();
 }
 
@@ -60,20 +54,20 @@ void Renderer::DrawTile(int tileId, QuadVerticles qv)
 QuadVerticles Renderer::CalculateVertexes(int x, int y)
 {
 	QuadVerticles qv;
-	double sizeMaxX = 1.0;
-	double sizeMaxY = 1.0;
+	double sizeMaxX = 640.0;
+	double sizeMaxY = 480.0;
 	double stepX = sizeMaxX / 8; //tile size on the display
 	double stepY = sizeMaxY / 8; //tile size on the display
 
 	
-	qv.upperLeftX = stepX * x + 0.005; //upper left x verticle
-	qv.upperLeftY = stepY * y + 0.005; //upper left y verticle
-	qv.upperRightX = stepX * (x + 1) - 0.005; //upper right x verticle
-	qv.upperRightY = stepY * y + 0.005; //upper right y verticle
-	qv.lowerRightX = stepX * (x + 1) - 0.005; //lower right x verticle
-	qv.lowerRightY = stepY * (y + 1) - 0.005; //lower right y verticle
-	qv.lowerLeftX = stepX * x + 0.005; // lower left x verticle
-	qv.lowerLeftY = stepY * (y + 1) - 0.005; //lower y verticle
+	qv.upperLeftX = stepX * x + 3.2; //upper left x verticle
+	qv.upperLeftY = stepY * y + 2.4; //upper left y verticle
+	qv.upperRightX = stepX * (x + 1) - 3.2; //upper right x verticle
+	qv.upperRightY = stepY * y + 2.4; //upper right y verticle
+	qv.lowerRightX = stepX * (x + 1) - 3.2; //lower right x verticle
+	qv.lowerRightY = stepY * (y + 1) - 2.4; //lower right y verticle
+	qv.lowerLeftX = stepX * x + 3.2; // lower left x verticle
+	qv.lowerLeftY = stepY * (y + 1) - 2.4; //lower y verticle
 
 	return qv;
 }
