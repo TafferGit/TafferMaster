@@ -38,11 +38,11 @@ Map::Map(int x, int y, int **args)
 {
 	this->sizeX = x;
 	this->sizeY = y;
-	for (int i = 0; i<sizeX;i++) {
-		for (int j = 0;j<sizeY;j++) {
-			this->map[i][j] = Element(args[i][j]);
-		}
-	}
+	//for (int i = 0; i<sizeX;i++) {
+	//	for (int j = 0;j<sizeY;j++) {
+	//		this->map[i][j] = Element(args[i][j]);
+	//	}
+	//}
 }
 
 int Map::getSizeX()

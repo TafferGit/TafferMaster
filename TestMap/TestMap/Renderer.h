@@ -24,11 +24,11 @@ struct QuadVerticles {
 class Renderer {
 private:
 	int tileId, tileToDraw;
-	void DisplayFirstFrame(Map map);
-	void DrawTile(int tileId, QuadVerticles qv);
+	void DisplayFirstFrame(Map * map);
+	void DrawTile(int tileId, QuadVerticles qv, GLuint texture);
 	QuadVerticles CalculateVertexes(int x, int y);
-	Map map;
+	Map * map;
 public:
-	Renderer(Map map);
+	Renderer(Map * map);
 };
 #endif
