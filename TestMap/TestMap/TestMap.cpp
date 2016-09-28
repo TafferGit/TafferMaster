@@ -34,7 +34,7 @@ Map::Map(int x, int y)
 		}
 	}
 }
-Map::Map(int x, int y, int** args) 
+Map::Map(int x, int y, int **args) 
 {
 	this->sizeX = x;
 	this->sizeY = y;

@@ -16,11 +16,11 @@ class Map {
 private:
 	int sizeX = 8;
 	int sizeY = 8;
-	Element map[sizeX][sizeY];
+	Element map[8][8];
 public:
 	Map();
 	Map(int x, int y);
-	Map(int x, int y, int** args);
+	Map(int x, int y, int **args);
 	int getSizeX();
 	int getSizeY();
 	int** getIconIds();

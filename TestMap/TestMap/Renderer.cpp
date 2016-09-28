@@ -36,7 +36,7 @@ void Renderer::DisplayFirstFrame(Map map)
 	glEnable(GL_TEXTURE_2D);
 	std::cout << "Entering cycle\n";
 	//Iterating through all the cells, column by column, row by row.
-	tiles = map.getIconIds();
+	int **tiles = map.getIconIds();
 	for (int i = 0; i < map.getSizeX(); i++ ) {
 		for (int j = 0; j < map.getSizeY(); j++) {
 			std::cout << "j = " << j << "i = " << i << "\n";
@@ -96,8 +96,8 @@ QuadVerticles Renderer::CalculateVertexes(int i, int j)
 	float stepX = sizeMaxX / this->map.getSizeX(); //tile size on the display
 	float stepY = sizeMaxY / this->map.getSizeY(); //tile size on the display
 
-	float borderX = 3.2; 
-	float borderY = 2.4; 
+	float borderX = 3.2f; 
+	float borderY = 2.4f; 
 	qv.upperLeftX = stepX * i + borderX; //upper left x verticle
 	qv.upperLeftY = stepY * j + borderY; //upper left y verticle
 	qv.upperRightX = stepX * (i + 1) - borderX; //upper right x verticle
@@ -113,7 +113,7 @@ QuadVerticles Renderer::CalculateVertexes(int i, int j)
 Renderer::Renderer(Map map)
 {
 	this->map = map;
-	DisplayFirstFrame();
+	DisplayFirstFrame(map);
 }
 
 void PrepareForDisplay(void)
@@ -123,10 +123,10 @@ void PrepareForDisplay(void)
 		{ 2, 1, 1, 0, 1 },
 		{ 0, 2, 1, 1, 2 }
 	};
-	Map map = Map(3, 5, tiles);
+	int **someArray = NULL; 
+	Map map = Map(3, 5, someArray); //Need to get pointer-to-pointer instead of a 2d array!
 	GLenum err = glewInit();
 	if (GLEW_OK != err) { fprintf(stderr, "Error: %s\n", glewGetErrorString(err)); }
 	else { fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION)); }
-	Map map = Map();
 	Renderer renderer = Renderer(map);
 }
