@@ -20,13 +20,14 @@ int main(int argc, char * argv[]) {
 
 }
 
-void Renderer::DisplayFirstFrame()
+void Renderer::DisplayFirstFrame(Map map)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	std::cout << "Entering cycle\n";
 	//Iterating through all the cells, column by column, row by row.
-	for (int i = 0; i < this->map.getSizeX(); i++ ) {
-		for (int j = 0; j < this->map.getSizeY(); j++) {
+	tiles = map.getIconIds();
+	for (int i = 0; i < map.getSizeX(); i++ ) {
+		for (int j = 0; j < map.getSizeY(); j++) {
 			std::cout << "j = " << j << "i = " << i << "\n";
 			tileId = tiles[j][i];
 			QuadVerticles quadVert = CalculateVertexes(j, i);
@@ -75,7 +76,7 @@ QuadVerticles Renderer::CalculateVertexes(int i, int j)
 Renderer::Renderer(Map map)
 {
 	this->map = map;
-	this->DisplayFirstFrame();
+	DisplayFirstFrame();
 }
 
 void PrepareForDisplay(void)

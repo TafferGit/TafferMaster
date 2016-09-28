@@ -20,7 +20,7 @@ struct QuadVerticles {
 class Renderer {
 private:
 	int tileId, tileToDraw;
-	void DisplayFirstFrame(int **tiles);
+	void DisplayFirstFrame(Map map);
 	void DrawTile(int tileId, QuadVerticles qv);
 	QuadVerticles CalculateVertexes(int x, int y);
 	Map map;

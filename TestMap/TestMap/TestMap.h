@@ -14,8 +14,8 @@ public:
 
 class Map {
 private:
-	int sizeX;
-	int sizeY;
+	int sizeX = 8;
+	int sizeY = 8;
 	Element map[sizeX][sizeY];
 public:
 	Map();
