@@ -1,6 +1,5 @@
 #include "Renderer.h"
 
-
 int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
@@ -21,13 +20,13 @@ int main(int argc, char * argv[]) {
 
 }
 
-void Renderer::DisplayFirstFrame(int **tiles)
+void Renderer::DisplayFirstFrame()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	std::cout << "Entering cycle\n";
 	//Iterating through all the cells, column by column, row by row.
-	for (int i = 0; i < 8; i++ ) {
-		for (int j = 0; j < 8; j++) {
+	for (int i = 0; i < this->map.getSizeX(); i++ ) {
+		for (int j = 0; j < this->map.getSizeY(); j++) {
 			std::cout << "j = " << j << "i = " << i << "\n";
 			tileId = tiles[j][i];
 			QuadVerticles quadVert = CalculateVertexes(j, i);
@@ -51,23 +50,24 @@ void Renderer::DrawTile(int tileId, QuadVerticles qv)
 }
 
 //This function calculates the quad verticles 
-QuadVerticles Renderer::CalculateVertexes(int x, int y)
+QuadVerticles Renderer::CalculateVertexes(int i, int j)
 {
 	QuadVerticles qv;
 	double sizeMaxX = 640.0;
 	double sizeMaxY = 480.0;
-	double stepX = sizeMaxX / 8; //tile size on the display
-	double stepY = sizeMaxY / 8; //tile size on the display
+	double stepX = sizeMaxX / this->map.getSizeX(); //tile size on the display
+	double stepY = sizeMaxY / this->map.getSizeY(); //tile size on the display
 
-	
-	qv.upperLeftX = stepX * x + 3.2; //upper left x verticle
-	qv.upperLeftY = stepY * y + 2.4; //upper left y verticle
-	qv.upperRightX = stepX * (x + 1) - 3.2; //upper right x verticle
-	qv.upperRightY = stepY * y + 2.4; //upper right y verticle
-	qv.lowerRightX = stepX * (x + 1) - 3.2; //lower right x verticle
-	qv.lowerRightY = stepY * (y + 1) - 2.4; //lower right y verticle
-	qv.lowerLeftX = stepX * x + 3.2; // lower left x verticle
-	qv.lowerLeftY = stepY * (y + 1) - 2.4; //lower y verticle
+	double borderX = 3.2; 
+	double borderY = 2.4; 
+	qv.upperLeftX = stepX * i + borderX; //upper left x verticle
+	qv.upperLeftY = stepY * j + borderY; //upper left y verticle
+	qv.upperRightX = stepX * (i + 1) - borderX; //upper right x verticle
+	qv.upperRightY = stepY * j + borderY; //upper right y verticle
+	qv.lowerRightX = stepX * (i + 1) - borderX; //lower right x verticle
+	qv.lowerRightY = stepY * (j + 1) - borderY; //lower right y verticle
+	qv.lowerLeftX = stepX * i + borderX; // lower left x verticle
+	qv.lowerLeftY = stepY * (j + 1) - borderY; //lower y verticle
 
 	return qv;
 }
@@ -75,11 +75,16 @@ QuadVerticles Renderer::CalculateVertexes(int x, int y)
 Renderer::Renderer(Map map)
 {
 	this->map = map;
-	DisplayFirstFrame(map.getIconIds());
+	this->DisplayFirstFrame();
 }
 
 void PrepareForDisplay(void)
 {
-	Map map = Map();
+	int tiles[3][5] = {
+		{ 1, 0, 2, 1, 0 },
+		{ 2, 1, 1, 0, 1 },
+		{ 0, 2, 1, 1, 2 }
+	};
+	Map map = Map(3, 5, tiles);
 	Renderer renderer = Renderer(map);
 }
