@@ -3,18 +3,22 @@
 #define RENDERED_H_INCLUDED
 #include <cstdlib>
 #include <iostream>
+#include <string>
+#include "GL\glew.h"
 #include "GL\freeglut.h"
+#include "GL\SOIL.h"
 #include "TestMap.h"
+
 void PrepareForDisplay(void);
 struct QuadVerticles {
-	double upperLeftX;
-	double upperLeftY; 
-	double upperRightX;
-	double upperRightY;
-	double lowerRightX;
-	double lowerRightY;
-	double lowerLeftX;
-	double lowerLeftY;
+	float upperLeftX;
+	float upperLeftY;
+	float upperRightX;
+	float upperRightY;
+	float lowerRightX;
+	float lowerRightY;
+	float lowerLeftX;
+	float lowerLeftY;
 };
 
 class Renderer {
