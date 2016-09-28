@@ -1,6 +1,5 @@
 #include "Renderer.h"
 
-
 int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
@@ -21,7 +20,7 @@ int main(int argc, char * argv[]) {
 
 }
 
-void Renderer::DisplayFirstFrame(int **tiles)
+void Renderer::DisplayFirstFrame(Map map)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -37,9 +36,10 @@ void Renderer::DisplayFirstFrame(int **tiles)
 	glEnable(GL_TEXTURE_2D);
 	std::cout << "Entering cycle\n";
 	//Iterating through all the cells, column by column, row by row.
-	for (int i = 0; i < 8; i++ ) {
-		for (int j = 0; j < 8; j++) {
-			//std::cout << "j = " << j << "i = " << i << "\n";
+	tiles = map.getIconIds();
+	for (int i = 0; i < map.getSizeX(); i++ ) {
+		for (int j = 0; j < map.getSizeY(); j++) {
+			std::cout << "j = " << j << "i = " << i << "\n";
 			tileId = tiles[j][i];
 			QuadVerticles quadVert = CalculateVertexes(j, i);
 			DrawTile(tileId, quadVert);
@@ -88,23 +88,24 @@ void Renderer::DrawTile(int tileId, QuadVerticles qv)
 }
 
 //This function calculates the quad verticles 
-QuadVerticles Renderer::CalculateVertexes(int x, int y)
+QuadVerticles Renderer::CalculateVertexes(int i, int j)
 {
 	QuadVerticles qv;
 	float sizeMaxX = 640.0;
 	float sizeMaxY = 480.0;
-	float stepX = sizeMaxX / 8; //tile size on the display
-	float stepY = sizeMaxY / 8; //tile size on the display
+	float stepX = sizeMaxX / this->map.getSizeX(); //tile size on the display
+	float stepY = sizeMaxY / this->map.getSizeY(); //tile size on the display
 
-	
-	qv.upperLeftX = stepX * x + 3.2f; //upper left x verticle
-	qv.upperLeftY = stepY * y + 2.4f; //upper left y verticle
-	qv.upperRightX = stepX * (x + 1) - 3.2f; //upper right x verticle
-	qv.upperRightY = stepY * y + 2.4f; //upper right y verticle
-	qv.lowerRightX = stepX * (x + 1.0f) - 3.2f; //lower right x verticle
-	qv.lowerRightY = stepY * (y + 1.0f) - 2.4f; //lower right y verticle
-	qv.lowerLeftX = stepX * x + 3.2f; // lower left x verticle
-	qv.lowerLeftY = stepY * (y + 1.0f) - 2.4f; //lower y verticle
+	float borderX = 3.2; 
+	float borderY = 2.4; 
+	qv.upperLeftX = stepX * i + borderX; //upper left x verticle
+	qv.upperLeftY = stepY * j + borderY; //upper left y verticle
+	qv.upperRightX = stepX * (i + 1) - borderX; //upper right x verticle
+	qv.upperRightY = stepY * j + borderY; //upper right y verticle
+	qv.lowerRightX = stepX * (i + 1) - borderX; //lower right x verticle
+	qv.lowerRightY = stepY * (j + 1) - borderY; //lower right y verticle
+	qv.lowerLeftX = stepX * i + borderX; // lower left x verticle
+	qv.lowerLeftY = stepY * (j + 1) - borderY; //lower y verticle
 
 	return qv;
 }
@@ -112,11 +113,17 @@ QuadVerticles Renderer::CalculateVertexes(int x, int y)
 Renderer::Renderer(Map map)
 {
 	this->map = map;
-	DisplayFirstFrame(map.getIconIds());
+	DisplayFirstFrame();
 }
 
 void PrepareForDisplay(void)
 {
+	int tiles[3][5] = {
+		{ 1, 0, 2, 1, 0 },
+		{ 2, 1, 1, 0, 1 },
+		{ 0, 2, 1, 1, 2 }
+	};
+	Map map = Map(3, 5, tiles);
 	GLenum err = glewInit();
 	if (GLEW_OK != err) { fprintf(stderr, "Error: %s\n", glewGetErrorString(err)); }
 	else { fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION)); }
