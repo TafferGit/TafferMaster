@@ -43,7 +43,7 @@ void Renderer::DisplayFirstFrame(Map * map)
 	int **tiles = map->getIconIds();
 	for (int i = 0; i < 8; i++ ) {
 		for (int j = 0; j < 8; j++) {
-			//std::cout << "j = " << j << "i = " << i << "\n";
+			std::cout << "j = " << j << "i = " << i << "\n";
 			tileId = 0;//tiles[j][i];
 			QuadVerticles quadVert = CalculateVertexes(j, i);
 			DrawTile(tileId, quadVert, tex_2d);
