@@ -9,6 +9,9 @@
 #include "GL\SOIL.h"
 #include "TestMap.h"
 
+#define WINDOW_WIDTH 640.0
+#define WINDOW_HEIGHT 480.0
+
 void PrepareForDisplay(void);
 struct QuadVerticles {
 	float upperLeftX;
@@ -21,13 +24,24 @@ struct QuadVerticles {
 	float lowerLeftY;
 };
 
+class TextureLoader {
+	GLuint tex_2d;
+	unsigned char * img;
+	int tex_width, tex_height;
+	void SetTextureParams();
+public:
+	void CreateTextureFromImage(const char * path);
+};
+
 class Renderer {
 private:
 	int tileId, tileToDraw;
-	void DisplayFirstFrame(Map * map);
-	void DrawTile(int tileId, QuadVerticles qv, GLuint texture);
-	QuadVerticles CalculateVertexes(int x, int y);
 	Map * map;
+	TextureLoader * tl;
+	void DisplayFirstFrame(Map * map);
+	void DrawTile(int tileId, QuadVerticles qv);
+	QuadVerticles CalculateVertexes(int x, int y);
+
 public:
 	Renderer(Map * map);
 };
